@@ -2,7 +2,7 @@
 import os
 
 from flask import Flask
-from . import db
+from . import db, auth
 
 
 def create_app(test_config=None):
@@ -34,5 +34,8 @@ def create_app(test_config=None):
 
     # register the database commands
     db.init_app(app)
+
+    # apply the authentication blueprint
+    app.register_blueprint(auth.bp)
 
     return app
