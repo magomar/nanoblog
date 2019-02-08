@@ -2,7 +2,7 @@
 import os
 
 from flask import Flask
-from . import db, auth
+from . import db, auth, blog
 
 
 def create_app(test_config=None):
@@ -38,4 +38,10 @@ def create_app(test_config=None):
     # apply the authentication blueprint
     app.register_blueprint(auth.bp)
 
+    # apply the blogging blueprint
+    app.register_blueprint(blog.bp)
+
+    # make url_for('index') == url_for('blog.index')
+    # the blog will be the main index
+    app.add_url_rule('/', endpoint='index')
     return app
