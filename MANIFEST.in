@@ -1,0 +1,4 @@
+include nanoblog/schema.sql
+graft nanoblog/static
+graft nanoblog/templates
+global-exclude *.pyc
